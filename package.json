@@ -1,6 +1,5 @@
 {
-    "name": "Olly-Cassidy",
-    "homepage": "https://ollycassidy13.github.io/Olly-Cassidy/",
+    "name": "olly-cassidy",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
