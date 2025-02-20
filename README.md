@@ -45,7 +45,7 @@ npm start
 
 ## Deployment
 
-The website is hosted on GitHub Pages and can be accessed at: [https://ollycassidy13.github.io/Olly-Cassidy/](https://ollycassidy13.github.io/Olly-Cassidy/)
+The website is hosted on Vercel and can be accessed at: [https://olly-cassidy.vercel.app/](https://olly-cassidy.vercel.app/)
 
 ## License
 
