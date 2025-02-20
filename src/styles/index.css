@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.typewriter {
+    position: relative;
+    min-height: 40px;
+  }
+  
+  .typewriter p {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .typewriter p::before {
+    content: "";
+    animation: typing-text 15s steps(1) infinite;
+  }
+  
+  .typewriter p::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    width: 2px;
+    height: 100%;
+    background: #4f46e5;
+    animation: cursor 0.8s infinite;
+  }
+  
+  @keyframes typing-text {
+    0%, 20% {
+      content: "Software Engineer";
+      width: 0;
+      animation: type 2s steps(15) forwards;
+    }
+    20.1%, 40% {
+      content: "Electronic Engineer";
+      width: 0;
+      animation: type 2s steps(17) forwards;
+    }
+    40.1%, 60% {
+      content: "FPGA Researcher";
+      width: 0;
+      animation: type 2s steps(14) forwards;
+    }
+    60.1%, 80% {
+      content: "Web Developer";
+      width: 0;
+      animation: type 2s steps(13) forwards;
+    }
+    80.1%, 100% {
+      content: "Dean's List Student";
+      width: 0;
+      animation: type 2s steps(17) forwards;
+    }
+  }
+  
+  @keyframes type {
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes cursor {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .typing-animation {
+    position: relative;
+    width: max-content;
+  }
+  
+  .typing-animation::before,
+  .typing-animation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .typing-animation::before {
+    background: white;
+    animation: typewriter 3s steps(20) 1s forwards;
+  }
+  
+  .typing-animation::after {
+    width: 0.125em;
+    background: #4f46e5;
+    animation: typewriter 3s steps(20) 1s forwards,
+               blink 750ms steps(20) infinite;
+  }
+  
+  @keyframes typewriter {
+    to { left: 100%; }
+  }
+  
+  @keyframes blink {
+    to { background: transparent; }
+  }
+  
+  .typewriter p {
+    animation: changeText 15s steps(1) infinite;
+  }
+  
+  @keyframes changeText {
+    0%, 20% {
+      content: "Software Engineer";
+    }
+    20.1%, 40% {
+      content: "Electronic Engineer";
+    }
+    40.1%, 60% {
+      content: "FPGA Researcher";
+    }
+    60.1%, 80% {
+      content: "Web Developer";
+    }
+    80.1%, 100% {
+      content: "Dean's List Student";
+    }
+  }
+
+  .line-1 {
+    position: relative;
+    border-right: 2px solid #4f46e5;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    display: inline-block;
+  }
+  
+  .anim-typewriter {
+    animation: 
+      typing 2s steps(40, end) forwards,
+      blink-caret .75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { 
+      width: 0;
+    }
+    to { 
+      width: var(--final-width, 100%);
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to { 
+      border-color: transparent;
+    }
+    50% { 
+      border-color: #4f46e5;
+    }
+  }
+
+  .line-1.anim-typewriter {
+    animation: 
+      typing 2s steps(40, end) forwards,
+      blink-caret .75s step-end infinite;
+  }
+
+  .line-1.anim-typewriter.typed {
+    width: var(--final-width, 100%);
+    animation: blink-caret .75s step-end infinite;
+  }
