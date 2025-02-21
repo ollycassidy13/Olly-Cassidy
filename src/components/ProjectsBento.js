@@ -1,7 +1,7 @@
 export default function ProjectsBento() {
   const projects = [
     {
-      title: "CANNL - Cache Acceletrated Neural Network Library",
+      title: "CANNL - Cache Accelerated Neural Network Library",
       href: "https://github.com/ollycassidy13/CANNL",
       image: "/img/cannl.png",
       description: "Coming Soon!!",
@@ -56,13 +56,13 @@ export default function ProjectsBento() {
       description: "Coming Soon!!",
       size: "lg:row-span-2"
     },
-    {
-      title: "oh-my-xilinx",
-      href: "https://github.com/ollycassidy13/oh-my-xilinx",
-      image: "/img/vivado.webp",
-      description: "I updated the oh-my-xilinx open-source code such that it could synthesising multiple LUT based NN's in NeuraLUT in parallel. I ensured it was compatible with the toolflow I updated during my UROP placement.",
-      size: "lg:col-span-2 lg:row-span-1"
-    },
+    // {
+    //   title: "oh-my-xilinx",
+    //   href: "https://github.com/ollycassidy13/oh-my-xilinx",
+    //   image: "/img/vivado.webp",
+    //   description: "I updated the oh-my-xilinx open-source code such that it could synthesising multiple LUT based NN's in NeuraLUT in parallel. I ensured it was compatible with the toolflow I updated during my UROP placement.",
+    //   size: "lg:col-span-2 lg:row-span-1"
+    // },
     {
       title: "Snake Game",
       href: "https://github.com/ollycassidy13/Snake",
@@ -89,7 +89,8 @@ export default function ProjectsBento() {
         href: "https://github.com/ollycassidy13/BeatBox",
         image: "/img/beatbox.png",
         description: "I designed a MP3 player using the custom tkinter library for the interface. The player would allow users to load songs, save a playlist and play the playlist, with a clean UI featuring a rotating vinyl player. Currently I’m working on moving to an Electron framework, and adding a 3D vinyl player animation using Three.js.",
-        size: "lg:row-span-2"
+        // size: "lg:row-span-2"
+        size: "lg:row-span-1"
     },
     {
       title: "Remote Control Car",
