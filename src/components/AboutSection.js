@@ -1,9 +1,9 @@
 export default function AboutSection() {
     const aboutCards = [
       {
-        title: "Studying",
-        content: "I am a second-year Electronic and Information Engineering student, recently named to the Dean's List for 2024 ranking 2nd the year, with a passion for building innovative hardware and software solutions. I recently undertook a research placement focused on ultra-low latency FPGA-based machine learning, where I was the lead author of a paper that explored hardware optimisation for real-time ML applications.",
-        link: "#education"
+        title: "Academics",
+        content: "I am a second-year Electronic and Information Engineering student, named to the Dean's List for 2024 ranking 2nd in the year. Some of my most noteworthy courseworks include a pipelined RISC-V CPU implemented in SystemVerilog and a C90 compiler. Outside of my degree I've been enjoying research related to the efficient use of FPGAs across different domains.",
+        link: "#timeline"
       },
       {
         title: "Running",

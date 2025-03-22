@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 .timeline-section {
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .timeline-items {
   position: relative;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .timeline-items::before {
@@ -26,7 +26,7 @@
 .timeline-item {
   display: flex;
   justify-content: flex-end;
-  padding: 2rem 0;
+  padding: 1rem 0;
   width: 100%;
   position: relative;
 }
@@ -37,9 +37,9 @@
 
 .timeline-content {
   width: 42%;
-  padding: 1.75rem;
+  padding: 1.25rem;
   background: white;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
   transition: transform 0.2s ease-in-out;
@@ -56,10 +56,10 @@
   transform: translateY(-50%);
   background: #4f46e5;
   color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 24px;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
 }
 
@@ -72,16 +72,43 @@
 
 .timeline-content h3 {
   color: #4f46e5;
-  margin-bottom: 0.75rem;
-  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 
 .timeline-content p {
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #555;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+}
+
+.timeline-items.compact::before {
+  width: 1px;
+}
+
+.timeline-items.compact .timeline-item {
+  padding: 0.6rem 0;
+}
+
+.timeline-items.compact .timeline-content {
+  padding: 0.9rem;
+}
+
+.timeline-items.compact .timeline-content h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.timeline-items.compact .timeline-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.timeline-items.compact .timeline-date {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
@@ -91,7 +118,9 @@
   
   .timeline-item {
     justify-content: flex-start;
-    padding-left: 80px;
+    padding-left: 70px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
   
   .timeline-item:nth-child(even) {
@@ -110,13 +139,24 @@
     left: 32px;
     transform: translateY(-50%);
     margin: 0;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
   }
 
   .timeline-item:nth-child(odd) .timeline-date,
   .timeline-item:nth-child(even) .timeline-date {
     left: 32px;
     transform: translateY(-50%);
+  }
+  
+  .timeline-items.compact .timeline-item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 65px;
+  }
+  
+  .timeline-items.compact .timeline-date {
+    padding: 0.15rem 0.35rem;
+    font-size: 0.75rem;
   }
 }

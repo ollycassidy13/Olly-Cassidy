@@ -1,7 +1,7 @@
 export default function CommitsSection() {
     return (
       <section id="commits-section">
-      <div className="bg-gray-50 py-24 sm:py-32">
+      <div className="bg-gray-50 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">

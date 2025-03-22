@@ -5,7 +5,7 @@ export default function HomeSection() {
     "Software Engineer",
     "Electronic Engineer",
     "FPGA Researcher",
-    "Web Developer",
+    "Track Athlete",
     "Dean's List Student"
   ];
   

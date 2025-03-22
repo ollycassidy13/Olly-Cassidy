@@ -1,10 +1,10 @@
 export default function ProjectsBento() {
   const projects = [
     {
-      title: "CANNL - Cache Accelerated Neural Network Library",
-      href: "https://github.com/ollycassidy13/CANNL",
+      title: "CMATMUL",
+      href: "https://github.com/ollycassidy13/CMATMUL",
       image: "/img/cannl.png",
-      description: "Coming Soon!!",
+      description: "I developed an effective C++ based matrix multiplication kernel leading to over a 100x increase in throughput from a naïve solution by implementing cache-aware tiling, register blocking, an AVX2 microkernel and OpenMP parallelism",
       size: "lg:col-span-2 lg:row-span-1"
     },
     {
@@ -88,7 +88,7 @@ export default function ProjectsBento() {
         title: "BeatBox",
         href: "https://github.com/ollycassidy13/BeatBox",
         image: "/img/beatbox.png",
-        description: "I designed a MP3 player using the custom tkinter library for the interface. The player would allow users to load songs, save a playlist and play the playlist, with a clean UI featuring a rotating vinyl player. Currently I’m working on moving to an Electron framework, and adding a 3D vinyl player animation using Three.js.",
+        description: "I designed a MP3 player using the custom tkinter library for the interface. The player would allow users to load songs, save a playlist and play the playlist, with a clean UI featuring a rotating vinyl player. Currently I'm working on moving to an Electron framework, and adding a 3D vinyl player animation using Three.js.",
         // size: "lg:row-span-2"
         size: "lg:row-span-1"
     },
@@ -102,8 +102,8 @@ export default function ProjectsBento() {
   ];
 
   return (
-<section id="projects" className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-50 py-24 sm:py-32">
-    <div className="bg-gray-50 py-24 sm:py-32">
+<section id="projects" className="bg-gradient-to-b from-gray-100 to-gray-50 py-12 sm:py-16">
+    <div className="bg-gray-50 py-12 sm:py-16">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
