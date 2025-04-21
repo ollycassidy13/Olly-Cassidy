@@ -8,11 +8,18 @@ export default function ProjectsBento() {
       size: "lg:col-span-2 lg:row-span-1"
     },
     {
-      title: "Wildfire Sentinel",
-      href: "https://wildfire-sentinel.onrender.com/",
-      image: "/img/wildfire.png",
-      description: "Wildfire Sentinel is a React-based web application that displays NASA wildfire data on an interactive OpenStreetMap. The application fetches wildfire event data from NASA’s EONET API (via a custom Express backend) and overlays the events as markers on the map. Each marker provides details about the wildfire event, including title, location, date, and coordinates. A draggable date picker allows users to specify a date range for which the data is displayed.",
+      title: "MP3Meta",
+      href: "https://mp3-meta.vercel.app/",
+      image: "/img/mp3meta.png",
+      description: "I implemented a React based web application to allow users to edit the metadata of MP3 files. The application uses the ID3 library to read and write the metadata, and allows users to edit the title, artist, album, year and more. The application is hosted on Vercel.",
       size: "lg:row-span-2"
+    },
+    {
+      title: "Topz",
+      href: "https://github.com/ollycassidy13/Topz",
+      image: "/img/topz.png",
+      description: "I created a system performance monitor for Linux in C++. The application provides real-time monitoring of CPU, memory, and disk usage, with a user-friendly interface. It uses the ncurses library for terminal-based UI.",
+      size: "lg:col-span-2 lg:row-span-1"
     },
     {
       title: "Network Intrusion Detection System",
@@ -20,6 +27,13 @@ export default function ProjectsBento() {
       image: "/img/nids.png",
       description: "In this project I aimed to create a system to detect and classify network intrusions. The project is based around a fully connected FNN which was trained on the CIC-IDS2017 dataset. It is capable of detecting and distingushing between 15 different types of attack. I implemented packet sniffing in C, before moving to use the scapy library in python to run the model.",
       size: "lg:col-span-2 lg:row-span-1"
+    },
+    {
+      title: "Wildfire Sentinel",
+      href: "https://wildfire-sentinel.onrender.com/",
+      image: "/img/wildfire.png",
+      description: "Wildfire Sentinel is a React-based web application that displays NASA wildfire data on an interactive OpenStreetMap. The application fetches wildfire event data from NASA’s EONET API (via a custom Express backend) and overlays the events as markers on the map. Each marker provides details about the wildfire event, including title, location, date, and coordinates. A draggable date picker allows users to specify a date range for which the data is displayed.",
+      size: "lg:row-span-1"
     },
     {
       title: "Landline",
@@ -50,25 +64,18 @@ export default function ProjectsBento() {
       size: "lg:col-span-2 lg:row-span-1"
     },
     {
-      title: "Collabify",
-      href: "https://github.com/ollycassidy13",
-      image: "/img/collabify2.png",
-      description: "Coming Soon!!",
-      size: "lg:row-span-2"
-    },
-    // {
-    //   title: "oh-my-xilinx",
-    //   href: "https://github.com/ollycassidy13/oh-my-xilinx",
-    //   image: "/img/vivado.webp",
-    //   description: "I updated the oh-my-xilinx open-source code such that it could synthesising multiple LUT based NN's in NeuraLUT in parallel. I ensured it was compatible with the toolflow I updated during my UROP placement.",
-    //   size: "lg:col-span-2 lg:row-span-1"
-    // },
-    {
       title: "Snake Game",
       href: "https://github.com/ollycassidy13/Snake",
       image: "/img/snake.png",
-      description: "I developed an object-oriented Snake game using Java, complete with a graphical user interface (GUI). After finishing the implementation, I packaged the game to create a standalone executable for Windows.",
-      size: "lg:col-span-2 lg:row-span-1"
+      description: "I developed a Snake game using Java, complete with a graphical user interface (GUI) designed in Swing. The game features a classic snake gameplay experience, where the player controls a snake to eat food and grow longer while avoiding collisions with the walls and itself. The GUI includes pause/restart functionality, and a score display.",
+      size: "lg:row-span-2"
+    },
+    {
+      title: "oh-my-xilinx",
+      href: "https://github.com/ollycassidy13/oh-my-xilinx",
+      image: "/img/vivado.webp",
+      description: "I updated the open-source oh-my-xilinx repository to ensure it was compatible with the NeuraLUT toolflow developed during my summer placement at Imperial. This is also used in the ReducedLUT toolflow presented in the NeuraLUT repository too, and most recently NeuraLUT-Assemble.",
+      size: "lg:row-span-1"
     },
     {
       title: "Voltmeter",
@@ -98,6 +105,13 @@ export default function ProjectsBento() {
       image: "/img/car.jpg",
       description: "I designed and built a remote control car from logic, counters and MOSFETs. I used a crystal oscillator to generate a sine wave for RF transmission. I built H bridge motor drivers from MOSFETs and used logic to control the motor direction. The control system used counters and a clock which was synchronised between the transmitter/receiver.",
       size: "lg:col-span-2 lg:row-span-1"
+    },
+    {
+      title: "Collabify",
+      href: "https://github.com/ollycassidy13",
+      image: "/img/collabify2.png",
+      description: "Coming Soon!!",
+      size: "lg:row-span-1"
     }
   ];
 
