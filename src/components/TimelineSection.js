@@ -46,7 +46,7 @@ function TimelineSection() {
           <div className="timeline-date">2024</div>
           <div className="timeline-content">
             <h3>Research Opportunity</h3>
-            <p>I undertook a research opportunity focusing on reducing P-LUT utilization when implementing L-LUT based NN models on FPGA devices.</p>
+            <p>I undertook a research opportunity focusing on reducing P-LUT utilization when implementing L-LUT based NN models on FPGA devices</p>
           </div>
         </div>
 
@@ -55,6 +55,14 @@ function TimelineSection() {
           <div className="timeline-content">
             <h3>ISFPGA 2025</h3>
             <p>Presented ReducedLUT at the FPGA 2025 conference in Monterey California</p>
+          </div>
+        </div>
+
+        <div className="timeline-item">
+          <div className="timeline-date">2025</div>
+          <div className="timeline-content">
+            <h3>Cloud Engineering Internship</h3>
+            <p>Worked as a Cloud Engineering Intern at T. Rowe Price where I focused on implementing OpenAI agents securely in Azure-based pipelines</p>
           </div>
         </div>
       </div>
