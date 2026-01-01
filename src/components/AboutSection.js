@@ -2,7 +2,7 @@ export default function AboutSection() {
     const aboutCards = [
       {
         title: "Academics",
-        content: "I am a second-year Electronic and Information Engineering student, named to the Dean's List for 2024 ranking 2nd in the year. Some of my most noteworthy courseworks include a pipelined RISC-V CPU implemented in SystemVerilog and a C90 compiler. Outside of my degree I've been enjoying research related to the efficient use of FPGAs across different domains.",
+        content: "I am a penultimate-year Electronic and Information Engineering student. Some of my favourite courseworks include a pipelined RISC-V CPU implemented in SystemVerilog and a C90 compiler. Outside of my degree I've been enjoying research related to the efficient use of FPGAs across different domains.",
         link: "#timeline"
       },
       {

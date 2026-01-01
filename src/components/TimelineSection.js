@@ -65,6 +65,14 @@ function TimelineSection() {
             <p>Worked as a Cloud Engineering Intern at T. Rowe Price where I focused on implementing OpenAI agents securely in Azure-based pipelines</p>
           </div>
         </div>
+
+        <div className="timeline-item">
+          <div className="timeline-date">2025</div>
+          <div className="timeline-content">
+            <h3>Fast ML 2025</h3>
+            <p>Helped deliver a tutorial on LUT-based NNs and demonstrated live end-to-end models on a PYNQ board</p>
+          </div>
+        </div>
       </div>
     </section>
   );
