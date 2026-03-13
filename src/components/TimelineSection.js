@@ -1,126 +1,328 @@
-import React from "react";
-import { motion } from "framer-motion";
-import "./styles/Timeline.css";
+import { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-function TimelineSection() {
-  const timelineItems = [
-    {
-      date: "2021",
-      title: "A Levels",
-      description: "I studied at The Manchester Grammar School and achieved A* in Maths, Further Maths, Physics and Electronics"
-    },
-    {
-      date: "2023",
-      title: "University",
-      description: "I'm studying Electronic and Information Engineering at Imperial College London and I'm predicted First-Class Honours"
-    },
-    {
-      date: "2024",
-      title: "Dean's List 2024",
-      description: "I ranked 2nd in year at Imperial College London"
-    },
-    {
-      date: "2024",
-      title: "Research Opportunity",
-      description: "I undertook a research opportunity focusing on reducing P-LUT utilization when implementing L-LUT based NN models on FPGA devices"
-    },
-    {
-      date: "2025",
-      title: "ISFPGA 2025",
-      description: "Presented ReducedLUT at the FPGA 2025 conference in Monterey California"
-    },
-    {
-      date: "2025",
-      title: "Software Engineering Internship",
-      description: "Worked as a Software Engineering Intern at T. Rowe Price where I focused on implementing OpenAI agents securely in Azure-based pipelines"
-    },
-    {
-      date: "2025",
-      title: "Fast ML 2025",
-      description: "Helped deliver a tutorial on LUT-based NNs including a live demonstration of models running end-to-end on a PYNQ board"
-    },
-    {
-      date: "2026",
-      title: "AMD Reasearch and Advanced Development Internship",
-      description: "Starting in March I will spend 6 months working on novel low latency AI acceleration techniques in AMD's RAD lab"
-    }
-  ];
+// Newest first — user scrolls left-to-right to go back in time
+const timelineItems = [
+  {
+    year: '2026',
+    title: 'AMD RAD Lab',
+    description: '6-month internship working on novel low-latency AI acceleration techniques.',
+  },
+  {
+    year: '2025',
+    title: 'Fast ML 2025',
+    description: 'Delivered a tutorial on LUT-based NNs with a live end-to-end demo on a PYNQ board.',
+  },
+  {
+    year: '2025',
+    title: 'T. Rowe Price',
+    description: 'Software Engineering Intern — implemented OpenAI agents securely in Azure-based pipelines.',
+  },
+  {
+    year: '2025',
+    title: 'ISFPGA 2025',
+    description: 'Presented ReducedLUT at the FPGA 2025 conference in Monterey, California.',
+  },
+  {
+    year: '2024',
+    title: 'Research',
+    description: 'Focused on reducing P-LUT utilisation when implementing L-LUT based NN models on FPGA devices.',
+  },
+  {
+    year: '2024',
+    title: "Dean's List",
+    description: 'Ranked 2nd in year at Imperial College London.',
+  },
+  {
+    year: '2023',
+    title: 'Imperial College',
+    description: 'Electronic & Information Engineering. Predicted First-Class Honours.',
+  },
+  {
+    year: '2021',
+    title: 'A Levels',
+    description: 'Studied at The Manchester Grammar School. Achieved A* in Maths, Further Maths, Physics and Electronics.',
+  },
+];
+
+export default function TimelineSection() {
+  const scrollRef = useRef(null);
+
+  // Mouse drag-to-scroll
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    const onMouseDown = (e) => {
+      isDown = true;
+      el.style.cursor = 'grabbing';
+      startX = e.pageX - el.offsetLeft;
+      scrollLeft = el.scrollLeft;
+    };
+
+    const onMouseLeave = () => {
+      isDown = false;
+      el.style.cursor = 'grab';
+    };
+
+    const onMouseUp = () => {
+      isDown = false;
+      el.style.cursor = 'grab';
+    };
+
+    const onMouseMove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      el.scrollLeft = scrollLeft - walk;
+    };
+
+    el.addEventListener('mousedown', onMouseDown);
+    el.addEventListener('mouseleave', onMouseLeave);
+    el.addEventListener('mouseup', onMouseUp);
+    el.addEventListener('mousemove', onMouseMove);
+
+    return () => {
+      el.removeEventListener('mousedown', onMouseDown);
+      el.removeEventListener('mouseleave', onMouseLeave);
+      el.removeEventListener('mouseup', onMouseUp);
+      el.removeEventListener('mousemove', onMouseMove);
+    };
+  }, []);
 
   return (
-    <section className="relative min-h-screen bg-[#1a3a2e] py-32" id="timeline">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div 
-          className="mx-auto max-w-3xl text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+    <section
+      id="timeline"
+      style={{
+        backgroundColor: '#0A0A0A',
+        position: 'relative',
+        overflowY: 'hidden',
+        paddingTop: '80px',
+        paddingBottom: '80px',
+      }}
+    >
+      {/* Watermark */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 900,
+          fontSize: 'clamp(80px, 18vw, 220px)',
+          color: '#F8F7F4',
+          opacity: 0.03,
+          userSelect: 'none',
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+          lineHeight: 1,
+        }}
+      >
+        TIMELINE
+      </div>
+
+      {/* Header */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-12">
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <motion.div
-            className="inline-block mb-4 px-4 py-2 bg-emerald-900/50 rounded-full border border-emerald-700"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="text-sm font-semibold text-emerald-300">MY JOURNEY</span>
+            <span
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                color: '#FF3C00',
+                display: 'block',
+                marginBottom: '12px',
+              }}
+            >
+              / Timeline
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 900,
+                fontSize: 'clamp(32px, 5vw, 56px)',
+                color: '#F8F7F4',
+                lineHeight: 1,
+                margin: 0,
+              }}
+            >
+              The journey<br />so far.
+            </h2>
           </motion.div>
-          <h2 className="text-6xl font-black text-white mb-6">
-            Educational <span className="italic text-emerald-400">Timeline</span>
-          </h2>
-          <p className="text-xl text-gray-300">
-            Key milestones in my academic and professional development
-          </p>
-        </motion.div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-500 via-emerald-400 to-emerald-300 opacity-30"></div>
-          
-          <div className="space-y-12">
-            {timelineItems.map((item, index) => (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '11px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              color: '#888888',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <motion.span
+              animate={{ x: [0, 6, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              →
+            </motion.span>
+            Drag to go further back
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Horizontal scroll track */}
+      <div
+        ref={scrollRef}
+        style={{
+          overflowX: 'auto',
+          overflowY: 'visible',
+          paddingLeft: '48px',
+          paddingRight: '48px',
+          paddingBottom: '40px',
+          scrollSnapType: 'x proximity',
+          WebkitOverflowScrolling: 'touch',
+          cursor: 'grab',
+          userSelect: 'none',
+        }}
+        className="hide-scrollbar"
+      >
+        <div
+          style={{
+            display: 'flex',
+            gap: '0',
+            position: 'relative',
+            width: 'max-content',
+            paddingTop: '48px',
+          }}
+        >
+          {/* Connecting orange line — runs through dot centres (dot is 10px, centred at paddingTop + 5px = 53px) */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '53px',
+              left: 0,
+              right: 0,
+              height: '1px',
+              backgroundColor: '#FF3C00',
+              opacity: 0.35,
+            }}
+          />
+
+          {timelineItems.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                width: '280px',
+                flexShrink: 0,
+                scrollSnapAlign: 'start',
+                paddingRight: '28px',
+                position: 'relative',
+              }}
+            >
+              {/* Dot — sits ON the line */}
               <motion.div
-                key={index}
-                className={`flex items-center gap-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                style={{
+                  width: '10px',
+                  height: '10px',
+                  borderRadius: '50%',
+                  backgroundColor: index === 0 ? '#FF3C00' : 'rgba(255,60,0,0.5)',
+                  marginBottom: '16px',
+                  position: 'relative',
+                  zIndex: 1,
+                  flexShrink: 0,
+                }}
+                whileHover={{ scale: 1.8, backgroundColor: '#FF3C00' }}
+                transition={{ duration: 0.2 }}
+              />
+
+              {/* Faded year — below the line */}
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '36px',
+                  color: '#F8F7F4',
+                  opacity: index === 0 ? 0.3 : 0.1,
+                  lineHeight: 1,
+                  marginBottom: '10px',
+                }}
               >
-                {/* Content */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                  <motion.div
-                    className="inline-block"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-shadow border-l-4 border-emerald-500">
-                      <div className="text-emerald-600 font-bold text-sm mb-2">{item.date}</div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                    </div>
-                  </motion.div>
-                </div>
+                {item.year}
+              </div>
 
-                {/* Center dot */}
-                <motion.div 
-                  className="relative z-10"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+              {/* Card */}
+              <motion.div
+                style={{
+                  border: index === 0
+                    ? '1px solid rgba(255,60,0,0.35)'
+                    : '1px solid rgba(248,247,244,0.08)',
+                  padding: '20px 22px',
+                }}
+                whileHover={{
+                  borderColor: 'rgba(255,60,0,0.5)',
+                  y: -4,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '10px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#FF3C00',
+                    marginBottom: '8px',
+                  }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-emerald-500 border-4 border-emerald-900 shadow-lg"></div>
-                </motion.div>
-
-                {/* Spacer */}
-                <div className="flex-1"></div>
+                  {item.year}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '17px',
+                    color: '#F8F7F4',
+                    marginBottom: '10px',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '13px',
+                    lineHeight: 1.6,
+                    color: '#888888',
+                    margin: 0,
+                  }}
+                >
+                  {item.description}
+                </p>
               </motion.div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
-export default TimelineSection;

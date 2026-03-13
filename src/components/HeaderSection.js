@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import './styles/Header.css';
 
 function HeaderSection() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,8 +8,7 @@ function HeaderSection() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
+
       const sections = ['home', 'about', 'timeline', 'commits-section', 'papers', 'projects'];
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -29,65 +27,103 @@ function HeaderSection() {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home', id: 'home' },
-    { name: 'About', href: '#about', id: 'about' },
-    { name: 'Timeline', href: '#timeline', id: 'timeline' },
-    { name: 'Commits', href: '#commits-section', id: 'commits-section' },
-    { name: 'Papers', href: '#papers', id: 'papers' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'about',    href: '#about',          id: 'about' },
+    { name: 'timeline', href: '#timeline',        id: 'timeline' },
+    { name: 'research', href: '#papers',          id: 'papers' },
+    { name: 'projects', href: '#projects',        id: 'projects' },
   ];
 
   return (
-    <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-3' : 'py-6'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <motion.header
+      className="fixed top-0 left-0 right-0 z-50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className={`flex items-center justify-between backdrop-blur-xl bg-white/80 rounded-full px-6 py-3 shadow-lg transition-all duration-300 ${
-          isScrolled ? 'shadow-xl' : ''
-        }`}>
-          <motion.a 
-            href="/#home" 
-            className="text-2xl font-black text-gray-900"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Olly <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Cassidy</span>
-          </motion.a>
+      <div
+        style={{
+          backgroundColor: isScrolled ? 'rgba(10,10,10,0.96)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+          transition: 'background-color 0.4s ease, backdrop-filter 0.4s ease',
+          borderBottom: isScrolled ? '1px solid rgba(248,247,244,0.08)' : 'none',
+        }}
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
 
-          <nav className="hidden md:flex items-center gap-2 bg-gray-100 rounded-full p-1">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute inset-0 bg-white rounded-full shadow-sm"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{item.name}</span>
-              </a>
-            ))}
-          </nav>
+            {/* Logo */}
+            <motion.a
+              href="/#home"
+              className="font-black text-xl tracking-tight"
+              style={{ color: isScrolled ? '#F8F7F4' : '#0A0A0A' }}
+              whileHover={{ opacity: 0.6 }}
+              transition={{ duration: 0.15 }}
+            >
+              OC
+            </motion.a>
 
-          <motion.a
-            href="https://linkedin.com/in/oliver-cassidy-286ba3235"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-shadow"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact
-          </motion.a>
+            {/* Nav */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className="relative"
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '11px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: isScrolled ? '#F8F7F4' : '#0A0A0A',
+                    opacity: activeSection === item.id ? 1 : 0.5,
+                    transition: 'opacity 0.2s ease',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <span style={{ color: '#FF3C00', marginRight: '3px' }}>/</span>
+                  {item.name}
+                  {activeSection === item.id && (
+                    <motion.span
+                      layoutId="nav-active"
+                      style={{
+                        position: 'absolute',
+                        bottom: '-4px',
+                        left: 0,
+                        right: 0,
+                        height: '1.5px',
+                        backgroundColor: '#FF3C00',
+                        display: 'block',
+                      }}
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              ))}
+            </nav>
+
+            {/* CTA */}
+            <motion.a
+              href="https://linkedin.com/in/oliver-cassidy-286ba3235"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: isScrolled ? '#F8F7F4' : '#0A0A0A',
+                padding: '6px 14px',
+                border: isScrolled ? '1px solid rgba(248,247,244,0.25)' : '1px solid rgba(10,10,10,0.25)',
+                transition: 'border-color 0.2s ease, color 0.2s ease',
+                textDecoration: 'none',
+              }}
+              whileHover={{ borderColor: '#FF3C00', color: '#FF3C00' }}
+            >
+              [ contact ]
+            </motion.a>
+
+          </div>
         </div>
       </div>
     </motion.header>

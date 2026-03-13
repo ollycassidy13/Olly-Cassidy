@@ -1,163 +1,259 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+
+const items = [
+  {
+    num: '01',
+    title: 'Academics',
+    content: "I am a penultimate-year Electronic and Information Engineering student. Some of my favourite courseworks include a pipelined RISC-V CPU implemented in SystemVerilog and a C90 compiler. Outside of my degree I've been enjoying research related to the efficient use of FPGAs across different domains.",
+    link: { href: '#timeline', label: 'View timeline' },
+  },
+  {
+    num: '02',
+    title: 'Running',
+    content: 'I am also a dedicated athlete, running competitively for both Imperial College and Thames Valley Harriers. Training and competing as an athlete has taught me resilience, time management, and the importance of "trusting the plan", all of which I bring into the rest of my life. I compete in 3k and 5k events on the track.',
+  },
+  {
+    num: '03',
+    title: 'Projects',
+    content: 'Outside of my studies I have been involved in various projects ranging from hardware design such as a remote control car and a landline from gate level, to web design, hardware optimisation and software development.',
+    link: { href: '#projects', label: 'View projects' },
+  },
+  {
+    num: '04',
+    title: 'Music',
+    content: 'I have a strong love of music and enjoy making playlists on Spotify to share my favourite songs. Check out what I\'m listening to:',
+    spotify: 'https://open.spotify.com/embed/playlist/3swVm6ONJql9RHzD7AXem5',
+  },
+];
+
+function AboutItem({ item, index }) {
+  const [open, setOpen] = useState(index === 0);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      style={{ borderBottom: '1px solid rgba(10,10,10,0.1)' }}
+    >
+      <button
+        onClick={() => setOpen((o) => !o)}
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: '20px',
+          padding: '24px 0',
+          background: 'none',
+          border: 'none',
+          textAlign: 'left',
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '12px',
+            color: open ? '#FF3C00' : '#888888',
+            flexShrink: 0,
+            transition: 'color 0.2s ease',
+          }}
+        >
+          {item.num}
+        </span>
+        <span
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 900,
+            fontSize: 'clamp(22px, 3vw, 32px)',
+            color: '#0A0A0A',
+            lineHeight: 1,
+            flex: 1,
+          }}
+        >
+          {item.title}
+        </span>
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '18px',
+            color: '#888888',
+            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+            display: 'inline-block',
+            transition: 'transform 0.3s ease',
+          }}
+        >
+          +
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{ paddingBottom: '28px', paddingLeft: '32px' }}>
+              <p
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: '16px',
+                  lineHeight: 1.7,
+                  color: '#555555',
+                  maxWidth: '560px',
+                  marginBottom: item.link || item.spotify ? '16px' : 0,
+                }}
+              >
+                {item.content}
+              </p>
+
+              {item.spotify && (
+                <div style={{ marginTop: '16px', maxWidth: '460px' }}>
+                  <iframe
+                    src={item.spotify}
+                    width="100%"
+                    height="152"
+                    frameBorder="0"
+                    allow="encrypted-media"
+                    title="Spotify Playlist"
+                    style={{ display: 'block' }}
+                  />
+                </div>
+              )}
+
+              {item.link && (
+                <motion.a
+                  href={item.link.href}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '11px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: '#FF3C00',
+                    textDecoration: 'none',
+                  }}
+                  whileHover={{ gap: '12px' }}
+                >
+                  <span>→</span> {item.link.label}
+                </motion.a>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 export default function AboutSection() {
-    const sectionRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-      target: sectionRef,
-      offset: ["start end", "end start"]
-    });
+  return (
+    <section id="about" style={{ backgroundColor: '#F8F7F4', position: 'relative' }}>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-28 lg:py-36">
 
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-    const aboutCards = [
-      {
-        title: "Academics",
-        content: "I am a penultimate-year Electronic and Information Engineering student. Some of my favourite courseworks include a pipelined RISC-V CPU implemented in SystemVerilog and a C90 compiler. Outside of my degree I've been enjoying research related to the efficient use of FPGAs across different domains.",
-        link: "#timeline",
-        icon: "🎓"
-      },
-      {
-        title: "Running",
-        content: "I am also a dedicated athlete, running competitively for both Imperial College and Thames Valley Harriers. Training and competing as an athlete has taught me resilience, time management, and the importance of \"trusting the plan\", all of which I aim bring into the rest of my life. I compete in 3k and 5k events on the track and I'm currently experimenting with some shorter distances outside of my normal goals.",
-        icon: "🏃"
-      },
-      {
-        title: "Projects",
-        content: "Outside of my studies, I have been involved in various projects ranging from hardware design such as a remote control car and a landline from gate level to web design, hardware optimization and software development. You can find more details on my favourite projects below and be sure to click on the tiles for more information!",
-        link: "#projects",
-        icon: "💻"
-      },
-      {
-        title: "Music",
-        content: "I have a strong love of music and I enjoy making playlists on Spotify to share my favorite songs. Check out what I'm listening to here ->",
-        spotifyEmbed: "https://open.spotify.com/embed/playlist/3swVm6ONJql9RHzD7AXem5",
-        icon: "🎵"
-      }
-    ];
-  
-    return (
-      <section 
-        ref={sectionRef}
-        id="about" 
-        className="relative min-h-screen bg-gradient-to-b from-[#f5f3ef] to-white py-32"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div 
-            className="mx-auto max-w-3xl text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
+        {/* Watermark + heading */}
+        <div style={{ position: 'relative', marginBottom: '64px' }}>
+          <div
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 900,
+              fontSize: 'clamp(80px, 15vw, 180px)',
+              color: '#0A0A0A',
+              opacity: 0.04,
+              lineHeight: 1,
+              userSelect: 'none',
+              pointerEvents: 'none',
+              position: 'absolute',
+              top: '-20px',
+              left: '-10px',
+            }}
+          >
+            ABOUT
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            style={{ position: 'relative', zIndex: 1 }}
           >
-            <motion.div
-              className="inline-block mb-4 px-4 py-2 bg-indigo-100 rounded-full"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+            <span
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                color: '#FF3C00',
+                display: 'block',
+                marginBottom: '16px',
+              }}
             >
-              <span className="text-sm font-semibold text-indigo-600">GET TO KNOW ME</span>
-            </motion.div>
-            <h2 className="text-6xl font-black text-gray-900 mb-6">
-              Ideas Crafted<br />
-              <span className="italic bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Into Impact</span>
+              / About me
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 900,
+                fontSize: 'clamp(36px, 5vw, 64px)',
+                color: '#0A0A0A',
+                lineHeight: 1.05,
+                margin: 0,
+              }}
+            >
+              Four things<br />define me.
             </h2>
-            <p className="text-xl text-gray-600">
-              Every creation combines precision engineering with creative thinking,
-              turning ambitious ideas into tangible results.
-            </p>
           </motion.div>
-          
-          <div className="grid gap-8 md:grid-cols-2">
-            {aboutCards.map((card, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                {card.link ? (
-                  <motion.a 
-                    href={card.link} 
-                    className="block h-full"
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="group h-full overflow-hidden rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all border border-gray-100">
-                      <div className="p-10">
-                        <div className="text-5xl mb-4">{card.icon}</div>
-                        <h3 className="text-3xl font-bold mb-4 text-gray-900 group-hover:text-indigo-600 transition-colors">
-                          {card.title}
-                        </h3>
-                        <p className="text-gray-700 leading-relaxed text-lg">
-                          {card.content}
-                        </p>
-                        <div className="mt-6 flex items-center text-indigo-600 font-semibold">
-                          <span>Learn more</span>
-                          <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.a>
-                ) : card.spotifyEmbed ? (
-                  <motion.div 
-                    className="group h-full overflow-hidden rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all border border-gray-100"
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="p-10">
-                      <div className="text-5xl mb-4">{card.icon}</div>
-                      <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                        {card.title}
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed text-lg mb-6">
-                        {card.content}
-                      </p>
-                      <div className="mt-6">
-                        <iframe
-                          src={card.spotifyEmbed}
-                          width="100%"
-                          height="152"
-                          frameBorder="0"
-                          allowtransparency="true"
-                          allow="encrypted-media"
-                          className="rounded-2xl"
-                          title="Spotify Playlist"
-                        ></iframe>
-                      </div>
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    className="group h-full overflow-hidden rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all border border-gray-100"
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="p-10">
-                      <div className="text-5xl mb-4">{card.icon}</div>
-                      <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                        {card.title}
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed text-lg">
-                        {card.content}
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
         </div>
 
-        {/* Background Decoration */}
-        <motion.div
-          className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-br from-indigo-200 to-violet-200 rounded-full blur-3xl opacity-20"
-          style={{ y, opacity }}
-        />
-      </section>
-    );
-  }
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[36%_64%] gap-16 lg:gap-24">
+
+          {/* Left: statement */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: '8px' }}
+          >
+            <p
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(18px, 2vw, 24px)',
+                color: '#0A0A0A',
+                lineHeight: 1.4,
+                fontStyle: 'italic',
+              }}
+            >
+              Hardware to software. Research to production.
+            </p>
+            <div
+              style={{
+                marginTop: '32px',
+                width: '40px',
+                height: '2px',
+                backgroundColor: '#FF3C00',
+              }}
+            />
+          </motion.div>
+
+          {/* Right: accordion */}
+          <div style={{ borderTop: '1px solid rgba(10,10,10,0.1)' }}>
+            {items.map((item, i) => (
+              <AboutItem key={item.num} item={item} index={i} />
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

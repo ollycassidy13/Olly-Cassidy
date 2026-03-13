@@ -7,16 +7,18 @@ import PublicationsSection from './components/PublicationsSection';
 import ProjectsBento from './components/ProjectsBentoNew';
 import FooterSection from './components/FooterSection';
 import HeaderSection from './components/HeaderSection';
+import CustomCursor from './components/CustomCursor';
 
 function MainPage() {
   return (
     <>
+      <CustomCursor />
       <HeaderSection />
       <HomeSection />
       <AboutSection />
       <TimelineSection />
-      <CommitsSection />
       <PublicationsSection />
+      <CommitsSection />
       <ProjectsBento />
       <FooterSection />
     </>
