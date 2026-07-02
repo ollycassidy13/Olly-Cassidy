@@ -6,7 +6,6 @@ const LINKS = [
   { label: 'LinkedIn', href: meta.linkedin },
   { label: 'GitHub', href: meta.github },
   { label: 'Scholar', href: meta.scholar },
-  { label: 'arXiv', href: meta.arxiv },
   { label: 'CV', href: meta.cv },
 ];
 

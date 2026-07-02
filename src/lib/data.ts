@@ -8,7 +8,6 @@ export const meta = {
   github: 'https://github.com/ollycassidy13',
   linkedin: 'https://linkedin.com/in/oliver-cassidy-286ba3235',
   scholar: 'https://scholar.google.com/citations?user=CzGdJSAAAAAJ&hl=en',
-  arxiv: 'https://arxiv.org/a/cassidy_o_1.html',
   cv: '/Oliver_Cassidy_CV.pdf',
   currentPortfolio: 'https://olly-cassidy.vercel.app/',
 };

@@ -6,7 +6,6 @@ const DIRECTORY = [
   { label: 'LinkedIn', value: '/oliver-cassidy', href: meta.linkedin },
   { label: 'GitHub', value: '@ollycassidy13', href: meta.github },
   { label: 'Scholar', value: 'Citations profile', href: meta.scholar },
-  { label: 'arXiv', value: 'cassidy_o_1', href: meta.arxiv },
   { label: 'CV', value: 'Download PDF', href: meta.cv },
   { label: 'Live site', value: 'olly-cassidy.vercel.app', href: meta.currentPortfolio },
 ];
