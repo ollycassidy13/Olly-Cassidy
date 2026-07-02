@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4f2ee;      /* off-white magazine stock */
+  --paper-pure: #ffffff;
+  --ink: #0c0c0c;        /* near-black */
+  --ink-soft: #2a2a2a;
+  --muted: #8a8a8a;
+  --rule: rgba(12, 12, 12, 0.16);
+  --rule-strong: rgba(12, 12, 12, 0.85);
+  --invert-bg: #0c0c0c;
+  --invert-fg: #f4f2ee;
+  --invert-rule: rgba(244, 242, 238, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Display headline — heavy condensed grotesque */
+.display {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Small editorial meta label */
+.meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+}
+
+/* Justified editorial body column */
+.col {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.72;
+  text-align: justify;
+  hyphens: auto;
+  color: var(--ink-soft);
+}
+
+/* Grayscale editorial imagery */
+.bw {
+  filter: grayscale(100%) contrast(1.08) brightness(0.98);
+}
+
+/* Softer grayscale — keeps a hint of hue for diagrams/figures */
+.bw-soft {
+  filter: grayscale(78%) contrast(1.03);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Responsive editorial grids ───────────────────────────────
+   Column templates live here (not inline) so they can collapse. */
+.r-cover    { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.r-editorial{ grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.r-feature  { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.r-exp      { grid-template-columns: minmax(120px, 0.7fr) minmax(0, 1.4fr) minmax(0, 1.6fr); }
+.r-projects { grid-template-columns: repeat(4, 1fr); }
+.r-stats    { grid-template-columns: repeat(4, 1fr); }
+.r-tl-group { grid-template-columns: minmax(96px, 0.5fr) minmax(0, 3fr); }
+.r-tl-entry { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+
+@media (max-width: 1024px) {
+  .r-projects { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .r-cover,
+  .r-editorial,
+  .r-feature,
+  .r-exp,
+  .r-tl-group,
+  .r-tl-entry,
+  .r-sport { grid-template-columns: 1fr; }
+  .r-projects { grid-template-columns: repeat(2, 1fr); }
+  .r-stats    { grid-template-columns: repeat(2, 1fr); }
+  .col        { text-align: left; }
+  .sidenav    { display: none !important; }
+  .flip-arrow { display: none !important; }
+}
+
+/* ── Flipbook controls ── */
+.r-sport { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+
+.flip-ctl {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 2px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.flip-ctl:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.flip-arrow {
+  transition: transform 0.2s, background 0.2s;
+}
+.flip-arrow:hover {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.contact-row {
+  transition: padding-left 0.2s, background 0.2s;
+}
+.contact-row:hover {
+  padding-left: 10px;
+  background: rgba(244, 242, 238, 0.05);
+}
