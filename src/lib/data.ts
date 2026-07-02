@@ -215,7 +215,7 @@ export const projects = [
   },
   {
     title: 'Collabify',
-    href: 'https://github.com/ollycassidy13/Collabify',
+    href: '#',
     image: '/img/collabify2.png',
     description: 'React + Spotify API app for collaborative playlist building.',
     category: 'Web',
